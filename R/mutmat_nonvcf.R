@@ -20,6 +20,12 @@ mutmat_nonvcf<-function(inputdata){
           "A[T>G]A","A[T>G]C","A[T>G]G","A[T>G]T","C[T>G]A","C[T>G]C","C[T>G]G","C[T>G]T",
           "G[T>G]A","G[T>G]C","G[T>G]G","G[T>G]T","T[T>G]A","T[T>G]C","T[T>G]G","T[T>G]T")
   mut.table<-table(inputdata$con,inputdata$sample)
+  missing=which(!(mutorder %in% rownames(mut.table)))
+  missdata=as.table(matrix(0, nrow =length(missing), ncol=dim(mut.table)[2]))
+  rownames(missdata)=mutorder[missing]
+  colnames(missdata)=colnames(mut.table)
+  mut.table2=rbind(mut.table, missdata)
+  mut.table=mut.table2
   mut.table=mut.table[mutorder,]
   return(mut.table)
 }
