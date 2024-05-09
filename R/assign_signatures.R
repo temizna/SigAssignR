@@ -43,7 +43,8 @@ assign_signature<-function(known_sig_mat, mat, cut_off=0.03){
   for (i in colnames(mat)){
     muts=sum(mat[,i])
     assign.sol=nnls(known_sig_mat,mat[,i])
-    sigtouse=which(assign.sol$x>=cut_off)
+    assign.sol.frac<-assign.sol$x/sum(assign.sol$x)
+    sigtouse=which(assign.sol.frac>=cut_off)
     assigned.coeff[i,]=assign.sol$x
     if (length(sigtouse) >= 2){
       assign.sol=nnls(known_sig_mat[,sigtouse],mat[,i])
