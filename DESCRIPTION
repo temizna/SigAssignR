@@ -8,7 +8,8 @@ Description: Assign COSMIC signatures to mutation matrix using NNLS. A mutation 
 Depends:
 	nnls(>= 1.4),
 	sigminer(>= 2.2.2),
-	ggplot2(>= 3.4.2)
+	ggplot2(>= 3.4.2),
+	stringr(>=1.5.0)
 License:GPL-3 
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

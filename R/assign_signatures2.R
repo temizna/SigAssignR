@@ -4,7 +4,7 @@
 #' @param mat mutation count matrix (dimensions: 96 mutation types
 #' X n samples)
 #' @param known_sig_mat Known Signature matrix (dimensions: 96 mutation types
-#' 30 n signatures) 
+#' 30 or more n signatures) 
 #' @param cut_off Minimum signature contribution required
 #'
 #' @return Named list with signature contributions and reconstructed
@@ -23,7 +23,7 @@
 #'
 
 #' @export
-assign_signature<-function(known_sig_mat, mat, cut_off=0.03){
+assign_signature2<-function(known_sig_mat, mat, cut_off=0.03){
   #if(is.na(known_sig_mat)) known_sig_mat=cancer_signatures
   if(dim(known_sig_mat)[1] != dim(mat)[1]){
     stop("Number of mutational channels are not equal")
@@ -56,8 +56,8 @@ assign_signature<-function(known_sig_mat, mat, cut_off=0.03){
       temp2=temp/ratio.c
       assigned.coeff[i,sigtouse]=round(temp2)
     }
-    assigned.fit[,i]=round(assign.sol$fitted[,1])
-    assigned.res[,i]=round(assign.sol$residuals[,1])
+    assigned.fit[,i]=round(assign.sol$fitted[,1])/ratio.c
+    assigned.res[,i]=round(assign.sol$residuals[,1])/ratio.c
     assigned.dev[i]=assign.sol$deviance
   }
   results=list(coefficient=floor(assigned.coeff), fitted=floor(assigned.fit),residuals=floor(assigned.res), deviance=assigned.dev)

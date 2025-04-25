@@ -44,7 +44,12 @@ read_nonvcf<-function(inputdata, bsg=bsg, ext=1){
   inputdata$twentycontext[temprcg]=getRC(inputdata$twentycontext[temprcg])
   inputdata$context[temprca]=getRC(inputdata$context[temprca])
   inputdata$context[temprcg]=getRC(inputdata$context[temprcg])
-  inputdata$con=paste(substr(inputdata$context,1,1),"[",inputdata$ref,">",inputdata$alt,"]",substr(inputdata$context,3,3),sep="")
+  if(ext==1){
+    inputdata$con=paste(substr(inputdata$context,1,1),"[",inputdata$ref,">",inputdata$alt,"]",substr(inputdata$context,3,3),sep="")
+  } else {
+    inputdata$con=paste(substr(inputdata$context,1,2),"[",inputdata$ref,">",inputdata$alt,"]",substr(inputdata$context,4,5),sep="")
+  }
+ 
   inputdata<-unique(inputdata)
   return(inputdata)
 }
