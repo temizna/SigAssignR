@@ -1,6 +1,6 @@
 Package: SigAssignR
 Title: Assign COSMIC signatures to mutation matrix using NNLS 
-Version: 0.0.0.9000
+Version: 1.0
 Authors@R: 
     person("Nuri/Alpay", "Temiz", , "temizna@umn.edu", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
